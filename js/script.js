@@ -9,13 +9,10 @@ window.addEventListener('load', Initialize);
 function Initialize() {
   KoppelElementen();
   KoppelEvents();
-  VulStandaardwaarden();
-  LeesMovie();
+  //FetchDataJson();
 };
 
 function KoppelElementen () {
-  sidenav = document.getElementById("sidenav");
-  main = document.getElementById("main");
   slcGenres = document.getElementById("slcGenres");
 }
 
@@ -30,17 +27,48 @@ function KoppelEvents () {
 
 // function FetchDataJson() {
 //   //Koppelingen naar een externe site.
-//   fetch("https://brendyverstreken.github.io/WFA-EE-Proberen/api/movies.json")
+//   fetch("https://brendyverstreken.github.io/WFA-EE-Herproberen/api/movies.json")
 //     .then(function (response) { return response.json(); })
 //     .then(function (arr) {
 //       data = arr;
-//       //ToonDetails(arr);
+//       ToonDetails(arr);
 //     });
 // }
 
-function VulStandaardwaarden() {
-  sidenav.classList.add('hidden');
-  Maak.classList.add('hidden');
+function ToonDetails(data) {
+
+  //de data heeft verschillende keys (LuxeWagens, SUVAuto's, StadsAutos)
+  //dit komt terecht in 'key'.
+  for (let key in data) {
+
+    //nu we door de verschillende keys lussen, lussen we ook nog eens door de verschillende auto's per category
+    //vandaar mijn opmerking van daarnet dat deze misschien overbodig is.
+    //dit is een array, dus heeft een .length property
+    for (let index = 0; index < data[key].length; index++) {
+
+      //Hier word de auto aangemaakt
+      const film = data[key][index];
+      console.log('Car: ' + film);
+
+      let divCar = document.createElement('div');
+      let filmNaam = film.Naam;
+      let filmPrijs = film.Prijs;
+
+      let samenvatting = `<h3>${filmNaam}</h3><br/>
+                          Prijs: €${filmPrijs}<br/><br/>`;
+
+      divCar.className = 'carInfo';
+      divCar.id = index;
+      divCar.innerHTML = samenvatting;
+
+      //divContainer.appendChild(divCar);
+
+      //auto's is de array, dus geef mij de zoveelste auto
+      //en toon deze in de console
+      console.log(data[key][index]);
+
+    }
+  }
 }
 
 function MaakOnderdeelNav (onderdeelNaam) {
@@ -56,32 +84,3 @@ function MaakOnderdeelNav (onderdeelNaam) {
 }
 
 
-
-function ToonDetails(movies) {
-  sidenav.classList.add('hidden');
-  MediaDeviceInfo.classList.remove('hidden');
-
-  for (let index = 0; index < movies.length; index++) {
-    const movie = movies[index];
-    console.log('Movie: ' + movie);
-    let divMovie = document.createElement('div');
-    let movieAfbeelding = movie.Image;
-    let movieTitel = movie.Title;
-    let moviePrijs = movie.Price;
-    let movieActeurs = movie.Stars;
-    let movieDescription = movie.Description;
-    let samenvatting = `<h3>${movieTitel}</h3><br/>
-    <img src="img:${movieAfbeelding}" alt="afbeelding van movie ${movieTitel}" width="100px" class="logo"/><br/><br/>
-    Acteurs: ${movieActeurs}<br/><br/>
-    Uitleg: ${movieDescription}<br/><br/>
-    Prijs: €${moviePrijs}<br/><br/>`;
-
-    sidenav.class="movieInfo";
-    sidenav.id = index;
-    sidenav.innerHTML = samenvatting;
-    sidenav.addEventListener('click', () => {
-      indexHuidigeMovie = sidenav.id;
-    });
-    main.appendChild(sidenav);
-  }
-}
