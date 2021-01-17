@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+/* CSS Variables */
+
+:root {
+  /* Howest colors */
+  --blue: #44C8F5;
+  --white: #FEFFFF;
+  --pink: #EC008C;
+  --lightpink: #F9B2DC;
+  --yellow: #FFED00;
+  --lighyellow: #fffded;
+  --green: #009A93;
+  --lightgreen: #EAF5F5;
+  --black: #000000;
+}
+
+body{
+  line-height: 1.5em;
+  width: 90%;
+  margin : 0 auto;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--blue);
+}
+
+/* Buttons */
+
+button {
+  font-family: 'Open Sans', sans-serif;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border-style: solid;
+}
+
+.btn-yellow {
+  border-color: var(--yellow);
+  background-color: var(--lighyellow);
+  color: var(--black);
+}
+
+.btn-yellow:focus {
+  border-color: var(--blue);
+}
+
+.btn-yellow:hover {
+  background-color: var(--yellow);
+}
+
+.btn-pink {
+  border-color: var(--pink);
+  background-color: var(--lightpink);
+  color: var(--black);
+}
+
+.btn-pink:focus {
+  border-color: var(--blue);
+}
+
+.btn-pink:hover {
+  background-color: var(--pink);
+  color: var(--white);
+}
+
+/* Selects */
+
+select {
+  font-family: 'Open Sans', sans-serif;
+  padding: 10px 10px 10px 20px;
+  border-radius: 5px;
+  border-style: solid;
+  width: 250px;;
+}
+
+.floatrechts{
+  float: right;
+}
+#sidenav {
+  height: 100%;
+  width: 260px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+.sidenav a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.main {
+  margin-left: 160px; /* Same as the width of the sidenav */
+  
+  padding: 0px 10px;
+}
